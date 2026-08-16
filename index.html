@@ -14,10 +14,12 @@
 <title>澄耘活動工作室｜李易璋</title>
 <meta name="description" content="澄耘活動工作室 — 品牌發表、企業年會、記者會、空間美學與資源整合調度。">
 <meta name="theme-color" content="#2F3B59">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="澄耘活動工作室｜李易璋">
 <meta property="og:description" content="品牌發表・企業年會・記者會・空間美學・資源整合調度">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -52,7 +54,8 @@
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
+  html,body{height:100%;overscroll-behavior:none}
+  html{-webkit-text-size-adjust:100%}
 
   body{
     background:radial-gradient(120% 80% at 50% -10%, #35415F 0%, var(--navy-deep) 48%, #141B2B 100%);
@@ -63,7 +66,7 @@
     display:flex;flex-direction:column;
     align-items:center;justify-content:center;
     gap:26px;
-    padding:34px 16px calc(30px + env(safe-area-inset-bottom));
+    padding:calc(30px + env(safe-area-inset-top)) 16px calc(26px + env(safe-area-inset-bottom));
     overflow-x:hidden;
     -webkit-tap-highlight-color:transparent;
   }
@@ -76,6 +79,8 @@
     transform-style:preserve-3d;
     transition:transform .55s cubic-bezier(.2,.8,.3,1);
     cursor:pointer;border-radius:11px;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;user-select:none;
   }
   .card.live{transition:transform .08s linear}
   .card:focus-visible{outline:1px solid var(--gold);outline-offset:12px}
@@ -136,7 +141,7 @@
     border-image:linear-gradient(125deg,#8A6C39,#F0DCB4,#B4955C) 1;
     border-right:0;border-bottom:0;
   }
-  .bracket.br{bottom:13px;right:14px;border-left:0;border-top:0}
+  .bracket.br{bottom:10px;right:11px;width:46px;height:46px;border-left:0;border-top:0}
 
   .holo{
     position:absolute;inset:0;border-radius:11px;
@@ -189,10 +194,10 @@
     animation:pulse 2.6s ease-in-out infinite;
   }
   @keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
-  .logo{position:absolute;top:15px;right:17px;width:32px;height:40px}
+  .logo{position:absolute;top:14px;right:17px;width:31px;height:auto;display:block}
 
   /* 背面 */
-  .back-grid{display:flex;gap:14px;height:100%;align-items:stretch}
+  .back-grid{display:flex;gap:18px;height:100%;align-items:stretch}
   .who{flex:1;display:flex;flex-direction:column;min-width:0}
   .role{font-size:8px;letter-spacing:.16em;line-height:1.6}
   .role em{
@@ -216,13 +221,21 @@
     font-size:7.5px;letter-spacing:.2em;margin-right:7px;
   }
   .tax{margin-top:7px;font-size:7.5px;letter-spacing:.12em;color:var(--muted)}
-  .qr-pair{display:flex;gap:9px;align-items:flex-end;flex:none}
-  .qr{display:flex;flex-direction:column;align-items:center;gap:5px;
-      background:none;border:0;padding:0;cursor:pointer}
+  /* 擋掉 iOS 自動偵測產生的藍色連結樣式 */
+  .lines a,.face a{color:inherit!important;text-decoration:none!important}
+  .qr-pair{
+    display:flex;flex-direction:column;gap:10px;
+    align-items:center;justify-content:flex-end;flex:none;
+    margin-right:14px;margin-bottom:12px;
+  }
+  .qr{display:flex;flex-direction:column;align-items:center;gap:4px;
+      background:none;border:0;padding:0;cursor:pointer;
+      transition:transform .2s ease}
+  .qr:hover{transform:translateY(-1px)}
   .qr:focus-visible{outline:1px solid var(--gold);outline-offset:4px;border-radius:6px}
   .qr-box{
-    width:62px;height:62px;border-radius:5px;background:#fff;padding:4px;
-    box-shadow:0 0 0 1px rgba(196,172,136,.5),0 5px 14px -5px rgba(0,0,0,.6);
+    width:58px;height:58px;border-radius:5px;background:#fff;padding:4px;
+    box-shadow:0 0 0 1px rgba(196,172,136,.5),0 4px 12px -4px rgba(0,0,0,.6);
   }
   .qr-box img{width:100%;height:100%;display:block;image-rendering:pixelated}
   .qr small{
@@ -241,6 +254,7 @@
     display:flex;align-items:center;justify-content:center;gap:8px;
     transition:background .25s,border-color .25s;
   }
+  .btn{-webkit-user-select:none;user-select:none}
   .btn:hover{background:rgba(242,240,234,.12);border-color:var(--gold)}
   .btn:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
   .btn.primary{
@@ -290,27 +304,7 @@
 
         <div class="face front">
           <div class="bracket tl"></div>
-          <svg class="logo" viewBox="0 0 34 42" aria-hidden="true">
-            <defs>
-              <linearGradient id="gEdge" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#8A6C39"/>
-                <stop offset="45%" stop-color="#F2DFB6"/>
-                <stop offset="100%" stop-color="#A2854E"/>
-              </linearGradient>
-              <clipPath id="drop">
-                <path d="M17 1.5C25 9 31 17 31 26.5A14 14 0 0 1 3 26.5C3 17 9 9 17 1.5Z"/>
-              </clipPath>
-            </defs>
-            <path d="M17 1.5C25 9 31 17 31 26.5A14 14 0 0 1 3 26.5C3 17 9 9 17 1.5Z"
-                  fill="#2A3450" stroke="url(#gEdge)" stroke-width="1.2"/>
-            <g clip-path="url(#drop)">
-              <path d="M4 34 L15 19 L26 34 Z" fill="#7C8B54"/>
-              <path d="M13 34 L22 22 L31 34 Z" fill="#BFA372" opacity=".92"/>
-              <rect x="0" y="33" width="34" height="10" fill="#3E5C6B"/>
-            </g>
-            <path d="M11 8C9 12 8 15 8 18" stroke="#F7F3E9" stroke-width="1.5"
-                  stroke-linecap="round" fill="none" opacity=".9"/>
-          </svg>
+          <img class="logo" src="data:image/png;base64,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" alt="澄耘活動工作室">
 
           <div class="front-body">
             <!-- 可修改 1：工作室名稱 -->
